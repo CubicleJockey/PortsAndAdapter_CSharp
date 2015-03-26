@@ -1,0 +1,1 @@
+﻿Primary Ports are communication links between the application parts.

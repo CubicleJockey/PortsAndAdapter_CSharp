@@ -1,0 +1,1 @@
+﻿Secondary Ports are communication links between third party applications.
