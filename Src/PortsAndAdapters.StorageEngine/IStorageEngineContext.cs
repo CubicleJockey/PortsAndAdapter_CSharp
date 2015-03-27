@@ -36,7 +36,7 @@ namespace PortsAndAdapters.StorageEngine
 
         public IMongoCollection<Sample> Samples
         {
-            get { return _storage.Value.GetCollection<Sample>(typeof (Sample).Name); }
+            get { return _storage.Value.GetCollection<Sample>(typeof(Sample).Name); }
         }
     }
 }

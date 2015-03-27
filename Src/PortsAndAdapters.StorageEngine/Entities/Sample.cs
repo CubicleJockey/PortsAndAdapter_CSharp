@@ -19,21 +19,21 @@ namespace PortsAndAdapters.StorageEngine.Entities
 
         #endregion Constructors
 
-        #region Properties
+        #region Methods
 
         public ISampleView ToISampleView()
         {
             return new SampleView(Id, Name, Description, CreatedOn);
         }
 
-        #endregion Properties
+        #endregion Methods
 
-        #region Fields
+        #region Properties
 
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreatedOn { get; set; }
 
-        #endregion Fields
+        #endregion Properties
     }
 }

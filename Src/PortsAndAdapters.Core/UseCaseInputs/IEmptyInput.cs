@@ -1,14 +1,22 @@
 ﻿namespace PortsAndAdapters.Core.UseCaseInputs
 {
-    public interface IEmptyInput
-    {
-    }
+    public interface IEmptyInput{}
 
     public sealed class EmptyInput : IEmptyInput
     {
-        public static EmptyInput Instance
+        #region Constructors
+
+        static EmptyInput()
         {
-            get { return new EmptyInput(); }
+            Instance = new EmptyInput();
         }
+
+        #endregion Constructors
+
+        #region Properties
+
+        public static EmptyInput Instance { get; private set; }
+
+        #endregion Properties
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using PortsAndAdapters.Core.Events;
 using PortsAndAdapters.Core.Ports.Secondary.StorageEngine;
+using PortsAndAdapters.StorageEngine.EventComitters;
 using Seterlund.CodeGuard;
 
 namespace PortsAndAdapters.StorageEngine
@@ -18,9 +19,13 @@ namespace PortsAndAdapters.StorageEngine
             _storageEngineContext = Guard.That(storageEngineContext).IsNotNull().Value;
         }
 
+        #region Properties
+
         public IEventCommitter<ISampleCreatedEvent> SampleEventCreatedCommitter
         {
-            get { throw new NotImplementedException(); }
+            get { return new CreateSampleEventCommitter(_storageEngineContext); }
         }
+
+        #endregion Properties
     }
 }

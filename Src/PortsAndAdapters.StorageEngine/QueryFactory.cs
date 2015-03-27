@@ -1,6 +1,7 @@
 ﻿using System;
 using PortsAndAdapters.Core.Ports.Secondary.StorageEngine;
 using PortsAndAdapters.Core.Ports.Secondary.StorageEngine.Queriers;
+using PortsAndAdapters.StorageEngine.Queriers;
 using Seterlund.CodeGuard;
 
 namespace PortsAndAdapters.StorageEngine
@@ -24,7 +25,7 @@ namespace PortsAndAdapters.StorageEngine
 
         public ISampleQuerier SampleQuerier
         {
-            get { throw new NotImplementedException(); }
+            get { return new SampleQuerier(_storageEngineContext); }
         }
     }
 }
