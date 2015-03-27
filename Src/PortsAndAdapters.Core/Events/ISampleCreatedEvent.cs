@@ -1,4 +1,5 @@
 ﻿using System;
+using PortsAndAdapters.Core.UseCaseInputs.Shared.Creates;
 using Seterlund.CodeGuard;
 
 namespace PortsAndAdapters.Core.Events
@@ -8,23 +9,34 @@ namespace PortsAndAdapters.Core.Events
         Guid Id { get; }
         string Name { get; }
         string Description { get; }
+        DateTime CreatedOn { get; }
     }
 
     public class SampleCreatedEvent : ISampleCreatedEvent
     {
+        #region Fields
+
+        private readonly Guid _id;
+        private readonly ISampleCreateInputs _inputs;
+        private readonly DateTime _createdOn;
+
+        #endregion Fields
+
         #region Constructors
 
-        public SampleCreatedEvent(Guid id, string name, string description)
+        public SampleCreatedEvent(ISampleCreateInputs inputs)
         {
-            Id = Guard.That(id).IsNotEmpty().Value;
-            Name = Guard.That(name).IsNotNullOrWhiteSpace().Value;
-            Description = Guard.That(description).IsNotNullOrWhiteSpace().Value;
+            _id = Guid.NewGuid();
+            _inputs = Guard.That(inputs).IsNotNull().Value;
+            _createdOn = DateTime.Now;
         }
 
         #endregion Constructors
 
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
+        public Guid Id { get { return _id; } }
+        public string Name { get { return _inputs.Name; }}
+        public string Description { get { return _inputs.Description; } }
+        public DateTime CreatedOn { get { return _createdOn; } }
+
     }
 }

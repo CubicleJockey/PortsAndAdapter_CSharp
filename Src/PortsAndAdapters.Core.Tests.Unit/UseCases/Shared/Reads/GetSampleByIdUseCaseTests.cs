@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using FakeItEasy;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -69,12 +68,32 @@ namespace PortsAndAdapters.Core.Tests.Unit.UseCases.Shared.Reads
                 var id = Guid.NewGuid();
                 var findId = new SampleIdInputs(id);
 
-                var foundSample = new SampleView(id, "Kellee Maize", "New Age");
+                var foundSample = new SampleView(id, "Kellee Maize", "New Age", DateTime.Now);
                 
+
                 var querier = A.Fake<ISampleQuerier>();
-                A.CallTo(() => querier.GetWithId(findId)).Returns(foundSample);
                 
+                A.CallTo(() => querier.GetWithId(findId)).Returns(foundSample);
+
+                var usecase = new GetSampleByIdUseCase(querier);
+                usecase.Should().NotBeNull();
+
                 #endregion Arrange
+
+                #region Act
+
+                var sample = usecase.Execute(findId);
+
+                #endregion Act
+
+                #region Assert
+
+                sample.Should().NotBeNull();
+                sample.ShouldBeEquivalentTo(foundSample);
+
+                A.CallTo(() => querier.GetWithId(findId)).MustHaveHappened(Repeated.Exactly.Once);
+                
+                #endregion Assert
             }
         }
     }

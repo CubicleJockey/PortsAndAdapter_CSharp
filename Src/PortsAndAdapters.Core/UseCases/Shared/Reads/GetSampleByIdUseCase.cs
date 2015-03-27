@@ -1,5 +1,4 @@
-﻿using System;
-using PortsAndAdapters.Core.Ports.Secondary.StorageEngine.Queriers;
+﻿using PortsAndAdapters.Core.Ports.Secondary.StorageEngine.Queriers;
 using PortsAndAdapters.Core.UseCaseInputs.Shared.Reads;
 using PortsAndAdapters.Core.UtilityTypes;
 using PortsAndAdapters.Core.Views;

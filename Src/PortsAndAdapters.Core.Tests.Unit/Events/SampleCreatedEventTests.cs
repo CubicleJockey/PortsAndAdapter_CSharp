@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PortsAndAdapters.Core.Events;
+using PortsAndAdapters.Core.UseCaseInputs.Shared.Creates;
 
 namespace PortsAndAdapters.Core.Tests.Unit.Events
 {
@@ -10,36 +11,23 @@ namespace PortsAndAdapters.Core.Tests.Unit.Events
         [TestClass]
         public class Constructors
         {
-            private readonly Guid ID = Guid.NewGuid();
-
             [TestMethod]
             public void Valid()
             {
-                var sampleCreatedEvent = new SampleCreatedEvent(ID, "Name", "Description");
+                var inputs = new SampleCreateInputs("Name", "Description");
+
+                var sampleCreatedEvent = new SampleCreatedEvent(inputs);
                 sampleCreatedEvent.Should().NotBeNull();
                 sampleCreatedEvent.Should().BeAssignableTo<ISampleCreatedEvent>();
                 sampleCreatedEvent.Should().BeOfType<SampleCreatedEvent>();
             }
 
-            [TestMethod]
-            [ExpectedException(typeof (ArgumentException))]
-            public void InvalidIdParamater()
-            {
-                var sampleCreatedEvent = new SampleCreatedEvent(Guid.Empty, "Name", "Description");
-            }
 
             [TestMethod]
-            [ExpectedException(typeof (ArgumentException))]
-            public void InvalidNameParamater()
+            [ExpectedException(typeof (ArgumentNullException))]
+            public void Invalid_InputIsNull()
             {
-                var sampleCreatedEvent = new SampleCreatedEvent(ID, null, "Description");
-            }
-
-            [TestMethod]
-            [ExpectedException(typeof (ArgumentException))]
-            public void InvalidDescriptionParameter()
-            {
-                var sampleCreatedEvent = new SampleCreatedEvent(ID, "Name", null);
+                var sampleCreatedEvent = new SampleCreatedEvent(null);
             }
         }
 
@@ -51,23 +39,27 @@ namespace PortsAndAdapters.Core.Tests.Unit.Events
             {
                 #region Arrange
 
-                var id = Guid.NewGuid();
                 const string name = "McFrontALot";
                 const string description = "Creator of NerdCore Rapping";
+
+                var inputs = new SampleCreateInputs(name, description);
 
                 #endregion Arrange
 
                 #region Act
 
-                var sampleCreatedEvent = new SampleCreatedEvent(id, name, description);
+                var sampleCreatedEvent = new SampleCreatedEvent(inputs);
 
                 #endregion Act
 
                 #region Assert
 
-                sampleCreatedEvent.Id.ShouldBeEquivalentTo(id);
+                sampleCreatedEvent.Id.Should().NotBeEmpty();
                 sampleCreatedEvent.Name.ShouldAllBeEquivalentTo(name);
                 sampleCreatedEvent.Description.ShouldAllBeEquivalentTo(description);
+                sampleCreatedEvent.CreatedOn.Year.ShouldBeEquivalentTo(DateTime.Now.Year);
+                sampleCreatedEvent.CreatedOn.Month.ShouldBeEquivalentTo(DateTime.Now.Month);
+                sampleCreatedEvent.CreatedOn.Day.ShouldBeEquivalentTo(DateTime.Now.Day);
 
                 #endregion Assert
             }

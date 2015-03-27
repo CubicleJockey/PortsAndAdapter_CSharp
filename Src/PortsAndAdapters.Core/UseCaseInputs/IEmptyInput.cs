@@ -4,7 +4,7 @@
     {
     }
 
-    public class EmptyInput : IEmptyInput
+    public sealed class EmptyInput : IEmptyInput
     {
         public static EmptyInput Instance
         {

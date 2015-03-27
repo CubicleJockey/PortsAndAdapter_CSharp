@@ -27,7 +27,7 @@ namespace PortsAndAdapters.StorageEngine.EventComitters
         {
             Guard.That(@event).IsNotNull();
 
-            var sampleEntity = new Sample(@event.Id, @event.Name, @event.Description);
+            var sampleEntity = new Sample(@event.Id, @event.Name, @event.Description, @event.CreatedOn);
             var samplesCollection = _storageEngineContext.Invoke().Samples;
             samplesCollection.InsertOneAsync(sampleEntity);
         }

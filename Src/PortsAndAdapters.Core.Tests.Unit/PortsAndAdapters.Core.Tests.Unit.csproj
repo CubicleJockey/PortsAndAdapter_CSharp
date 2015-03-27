@@ -52,6 +52,7 @@
     <Compile Include="Events\SampleCreatedEventTests.cs" />
     <Compile Include="Ports\Primary\InternalClient\InternalClientPortTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseCaseInputs\Shared\Creates\SampleCreateInputsTests.cs" />
     <Compile Include="UseCaseInputs\Shared\Reads\SampleIdInputsTests.cs" />
     <Compile Include="UseCases\Shared\Reads\GetAllSamplesUseCaseTests.cs" />
     <Compile Include="UseCases\Shared\Reads\GetSampleByIdUseCaseTests.cs" />

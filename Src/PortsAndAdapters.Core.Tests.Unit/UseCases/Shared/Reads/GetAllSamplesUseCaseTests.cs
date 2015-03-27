@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using FakeItEasy;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -70,8 +69,8 @@ namespace PortsAndAdapters.Core.Tests.Unit.UseCases.Shared.Reads
 
                 IEnumerable<ISampleView> samplesValue = new[]
                 {
-                    new SampleView(Guid.NewGuid(), "Batman", "DarkNight"),
-                    new SampleView(Guid.NewGuid(), "Optimus Rhyme", "NerdCore") 
+                    new SampleView(Guid.NewGuid(), "Batman", "DarkNight", DateTime.Now),
+                    new SampleView(Guid.NewGuid(), "Optimus Rhyme", "NerdCore", DateTime.Now) 
                 };
 
                 var sampleQuerier = A.Fake<ISampleQuerier>();
