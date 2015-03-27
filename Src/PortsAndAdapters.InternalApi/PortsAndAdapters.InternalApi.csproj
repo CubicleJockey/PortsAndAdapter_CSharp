@@ -184,6 +184,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="RequestEntityBodies\" />
+    <Folder Include="RequestEntityParts\" />
+    <Folder Include="RequestUris\" />
+    <Folder Include="ResponseEntityBodies\" />
+    <Folder Include="ResponseParts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
